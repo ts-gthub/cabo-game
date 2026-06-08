@@ -284,7 +284,7 @@ function buildDiscardUpdates(room, playerId, discardedCard, playerCards) {
   const ptype = hasPower(discardedCard.rank) ? powerType(discardedCard.rank) : null;
   const pendingPower = ptype ? {
     type: ptype, activatingPlayerId: playerId,
-    phase: 'selecting', sourceCard: discardedCard, ownCardIndex: undefined,
+    phase: 'selecting', sourceCard: discardedCard,
   } : null;
 
   return { discardPile, centerCard, ptype, pendingPower, playerCards };
