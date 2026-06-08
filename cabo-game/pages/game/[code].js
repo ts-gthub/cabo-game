@@ -92,7 +92,7 @@ function PlayerGrid({ player, isMe, isCurrentTurn, room, myId, onCardClick, show
             const hl = cardHighlight(realIdx);
             return (
               <Card key={realIdx} size="sm"
-                card={revealed(realIdx) ? card : { ...card, isRevealed: false }}
+                card={revealed(realIdx) ? { ...card, isRevealed: true } : { ...card, isRevealed: false }}
                 highlight={hl || undefined} selectable={!!hl}
                 onClick={() => onCardClick?.(player.id, realIdx)} />
             );
@@ -106,7 +106,7 @@ function PlayerGrid({ player, isMe, isCurrentTurn, room, myId, onCardClick, show
           const hl = cardHighlight(idx);
           return card ? (
             <Card key={idx} size="md"
-              card={revealed(idx) ? card : { ...card, isRevealed: false }}
+              card={revealed(idx) ? { ...card, isRevealed: true } : { ...card, isRevealed: false }}
               highlight={hl || undefined} selectable={!!hl}
               onClick={() => onCardClick?.(player.id, idx)} />
           ) : (
