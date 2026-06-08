@@ -361,7 +361,10 @@ export default function GamePage() {
   const router = useRouter();
   const { code } = router.query;
   const [room, setRoom] = useState(null);
-  const [myId, setMyId] = useState('');
+  // Read synchronously so isMe is correct on every render, including the first
+  const [myId] = useState(() =>
+    typeof window !== 'undefined' ? (localStorage.getItem('cabo_player_id') || '') : ''
+  );
   const [error, setError] = useState('');
   const [previewSecs, setPreviewSecs] = useState(15);
   const [selectingReplace, setSelectingReplace] = useState(false);
@@ -370,8 +373,6 @@ export default function GamePage() {
   const previewRef = useRef(null);
   const matchRef = useRef(null);
   const toastRef = useRef(null);
-
-  useEffect(() => { setMyId(localStorage.getItem('cabo_player_id') || ''); }, []);
 
   useEffect(() => {
     if (!code) return;
