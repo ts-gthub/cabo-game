@@ -9,12 +9,10 @@ export default function Lobby() {
   const router = useRouter();
   const { code } = router.query;
   const [room, setRoom] = useState(null);
-  const [myId, setMyId] = useState('');
+  const [myId] = useState(() =>
+    typeof window !== 'undefined' ? (localStorage.getItem('cabo_player_id') || '') : ''
+  );
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    setMyId(localStorage.getItem('cabo_player_id') || '');
-  }, []);
 
   useEffect(() => {
     if (!code) return;
